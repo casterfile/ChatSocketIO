@@ -42,16 +42,20 @@
 			ready: function(){
 				socket.on('chat.message', function(message){
 
-					this.messages.push(message);
+					this.messages.unshift(message);
+					// push() adds at end; pop() deletes from end.
+					// unshift() adds to front; shift() deletes from front.
+					// splice() can do whatever it wants, wherever it wants.
 
 				}.bind(this));
 			},
 			
 			methods:{
 				send: function(e){
-					socket.emit('chat.message', this.message);
-					this.message = '';
-
+					if(this.message !== ''){
+						socket.emit('chat.message', this.message);
+						this.message = '';
+					}
 					e.preventDefault();
 				}
 			}
