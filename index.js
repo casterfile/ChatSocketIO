@@ -20,4 +20,4 @@ io.on('connection', function(socket){
 	});
 });
 
-console.log("Go to localhost:3000");
+console.log("Go to localhost:5000");
